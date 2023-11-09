@@ -22,3 +22,29 @@ function bintoip() {
         alert("Error. Acceptable input: 1, 0 and '.'");
     }
 }
+
+function iptobin() {
+    let ipToBinary = "";
+    let ipToBinaryArray = [];
+    let ipToBinaryValue = document.getElementById("iptobinary").value;
+    let validIP = /^[0123456789.]+$/.test(ipToBinaryValue);
+    const ipToBinaryValueSplit = ipToBinaryValue.split(".");
+    if (validIP) {
+        for (index in ipToBinaryValueSplit) {
+            let currentNumber = Number(ipToBinaryValueSplit[index]);
+            for (i in binaryNumbers) {
+                if (currentNumber >= binaryNumbers[i]) {
+                    currentNumber -= binaryNumbers[i];
+                    ipToBinary += "1";
+                } else {
+                    ipToBinary += "0";
+                }
+            }
+            ipToBinaryArray.push(ipToBinary);
+            ipToBinary = "";
+        }
+        alert(`Binary: ${ipToBinaryArray[0]}.${ipToBinaryArray[1]}.${ipToBinaryArray[2]}.${ipToBinaryArray[3]}`);
+    } else {
+        alert("Error. Acceptable input: Numbers (0-9) and '.'");
+    }
+}
